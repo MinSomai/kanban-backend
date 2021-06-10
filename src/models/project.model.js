@@ -3,7 +3,7 @@ const bcrypt = require('bcryptjs');
 const { toJSON, paginate } = require('./plugins');
 const { roles } = require('../config/roles');
 
-const organizationSchema = mongoose.Schema(
+const projectSchema = mongoose.Schema(
   {
     name: {
       type: String,
@@ -13,12 +13,6 @@ const organizationSchema = mongoose.Schema(
     description: {
       type: String,
     },
-    projects: [
-      {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'project',
-      },
-    ],
   },
   {
     timestamps: true,
@@ -26,17 +20,17 @@ const organizationSchema = mongoose.Schema(
 );
 
 // add plugin that converts mongoose to json
-organizationSchema.plugin(toJSON);
-organizationSchema.plugin(paginate);
+projectSchema.plugin(toJSON);
+projectSchema.plugin(paginate);
 
-organizationSchema.pre('save', async function (next) {
+projectSchema.pre('save', async function (next) {
   const app = this;
   next();
 });
 
 /**
- * @typedef Organization
+ * @typedef Project
  */
-const Organization = mongoose.model('Organization', organizationSchema);
+const Project = mongoose.model('Project', projectSchema);
 
-module.exports = Organization;
+module.exports = Project;

@@ -31,6 +31,19 @@ components:
         id: 5ebac534954b54139806c112
         name: fake name org
         description: description one
+    Project:
+      type: object
+      properties:
+        id:
+          type: string
+        description:
+          type: string
+        name:
+          type: string
+      example:
+        id: 5ebac534954b54139806c112
+        name: fake name project
+        description: description of project
 
     Token:
       type: object
